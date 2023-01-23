@@ -76,7 +76,7 @@ export default function ComputerInception3D() {
     });
 
     // ABOUT ME SCULPTURE -----------------------------------------------------------
-    loader.load('./assets/Charisma_Body.gltf', (gltf) => {
+    loader.load('./assets/Intelligence_Head.gltf', (gltf) => {
       const spotLight = new THREE.SpotLight(0x54A4DB, 0.5);
       spotLight.castShadow = true;
       spotLight.position.y = 208;
@@ -85,7 +85,7 @@ export default function ComputerInception3D() {
 
       gltf.scene.scale.set(5, 5, 5);
       gltf.scene.position.setZ(-35)
-      gltf.scene.position.setY(116)
+      gltf.scene.position.setY(50)
       gltf.scene.position.setX(40)
       gltf.scene.rotateX(30)
       // gltf.scene.rotateY(110)
@@ -104,7 +104,7 @@ export default function ComputerInception3D() {
     });
 
     // SKILLS SCULPTURE -----------------------------------------------------------
-    loader.load('./assets/Charisma_Body.gltf', (gltf) => {
+    loader.load('./assets/Repair_Body.gltf', (gltf) => {
       const spotLight = new THREE.SpotLight(0x54A4DB, 1);
       spotLight.castShadow = true;
       spotLight.position.y = 346;
@@ -113,7 +113,7 @@ export default function ComputerInception3D() {
 
       gltf.scene.scale.set(5, 5, 5);
       gltf.scene.position.setZ(-35)
-      gltf.scene.position.setY(254)
+      gltf.scene.position.setY(244)
       gltf.scene.position.setX(40)
       gltf.scene.rotateX(30)
       // gltf.scene.rotateY(110)
@@ -132,7 +132,7 @@ export default function ComputerInception3D() {
     });
 
     // PROJECTS SCULPTURE -----------------------------------------------------------
-    loader.load('./assets/Charisma_Body.gltf', (gltf) => {
+    loader.load('./assets/Science_Body.gltf', (gltf) => {
       const spotLight = new THREE.SpotLight(0x54A4DB, 1.5);
       spotLight.castShadow = true;
       spotLight.position.y = 484;
@@ -141,7 +141,7 @@ export default function ComputerInception3D() {
 
       gltf.scene.scale.set(5, 5, 5);
       gltf.scene.position.setZ(-35)
-      gltf.scene.position.setY(392)
+      gltf.scene.position.setY(402)
       gltf.scene.position.setX(40)
       gltf.scene.rotateX(30)
       // gltf.scene.rotateY(110)
@@ -160,7 +160,7 @@ export default function ComputerInception3D() {
     });
 
     // CONTACT SCULPTURE -----------------------------------------------------------
-    loader.load('./assets/Charisma_Body.gltf', (gltf) => {
+    loader.load('./assets/Speech_Body.gltf', (gltf) => {
       const spotLight = new THREE.SpotLight(0x54A4DB, 2);
       spotLight.castShadow = true;
       spotLight.position.y = 622;
@@ -169,7 +169,30 @@ export default function ComputerInception3D() {
 
       gltf.scene.scale.set(5, 5, 5);
       gltf.scene.position.setZ(-35)
-      gltf.scene.position.setY(530)
+      gltf.scene.position.setY(550)
+      gltf.scene.position.setX(40)
+      gltf.scene.rotateX(30)
+      // gltf.scene.rotateY(110)
+
+      scene.add(gltf.scene);
+
+      const animate = () => {
+        // updates
+        // controls.update();
+        gltf.scene.rotation.z += 0.01;
+
+        renderer.render(scene, camera);
+        window.requestAnimationFrame(animate);
+      }
+      animate();
+    });
+
+    // CREDITS SCULPTURE -----------------------------------------------------------
+    loader.load('./assets/Weapons.gltf', (gltf) => {
+
+      gltf.scene.scale.set(1.5, 1.5, 1.5);
+      gltf.scene.position.setZ(-35)
+      gltf.scene.position.setY(715)
       gltf.scene.position.setX(40)
       gltf.scene.rotateX(30)
       // gltf.scene.rotateY(110)
@@ -199,7 +222,7 @@ export default function ComputerInception3D() {
     function moveCamera() {
       const t = document.body.getBoundingClientRect().top;
 
-      camera.position.y = t * -0.17;
+      camera.position.y = t * -0.16;
     }
     document.body.onscroll = moveCamera;
     moveCamera();
@@ -207,23 +230,50 @@ export default function ComputerInception3D() {
     // SCROLL TO TARGET DIV
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function (e) {
-          e.preventDefault();
-  
-          var target = document.querySelector(this.getAttribute('href'));
-          var targetPosition = target.getBoundingClientRect().top;
-          var targetHeight = target.offsetHeight;
-          var windowHeight = window.innerHeight;
-          var offset = (targetPosition - (windowHeight / 2)) + (targetHeight / 2);
-  
-          window.scrollBy({
-              top: offset,
-              left: 0,
-              behavior: 'smooth'
-          });
+        e.preventDefault();
+
+        var target = document.querySelector(this.getAttribute('href'));
+        var targetPosition = target.getBoundingClientRect().top;
+        var targetHeight = target.offsetHeight;
+        var windowHeight = window.innerHeight;
+        var offset = (targetPosition - (windowHeight / 2)) + (targetHeight / 2);
+
+        window.scrollBy({
+          top: offset,
+          left: 0,
+          behavior: 'smooth'
+        });
       });
-  });
+    });
+
+    // Get the "copy-link" element
+    var copyLink = document.getElementById("copy-link");
+
+    // Add a click event listener to the element
+    copyLink.addEventListener("click", function () {
+      // Get the text to be copied
+      var text = copyLink.innerHTML;
+
+      // Create a new ClipboardItem object
+      var clipboardItem = new ClipboardItem({ "text/plain": new Blob([text], { type: "text/plain" }) });
+
+      // Use the clipboard.write() method to copy the text to the clipboard
+      navigator.clipboard.write([clipboardItem]).then(
+        function () {
+          // The text was successfully copied to the clipboard
+          setIsCopied(true);
+          setTimeout(() => setIsCopied(false), 1500);
+        },
+        function (err) {
+          // There was an error copying the text to the clipboard
+          console.error("Error copying text to clipboard: " + err);
+        }
+      );
+    });
 
   }, []);
+
+  const [isCopied, setIsCopied] = useState(false);
 
   return (
     <>
@@ -246,17 +296,67 @@ export default function ComputerInception3D() {
           <section id='about'>
             <h2>About</h2>
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+              Hey there!
+              Bienviendos!
+              Kafa halek?
+              <br />
+              <br />
+              To ever-so-humbly introduce myself,
+              I'm a creative and a "Jack of all Trades" software engineer,
+              with both jaw-dropping and mesmerizing web development
+              abilities.
+              <br />
+              <br />
+              Need a stunning 3D landing page?
+              I Gotchu.
+              <br />
+              Backend architecture needs some fixin' up?
+              I Gotchu.
+              <br />
+              Consulting?
+              I Gotchu.
+              <br />
+              Want me on your team?
+              I maybe gotchu it depends.
             </p>
-            <a href='#skills' style={{fontSize: 'large'}}>Next</a>
+            <a href='#skills' style={{ fontSize: 'large' }}>Next</a>
           </section>
 
           <section id='skills'>
             <h2>Skills</h2>
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+              <span style={{ fontWeight: 'bolder', }}>Frontend Skills [lvl: expert]</span>
+              <br />
+              React, Nextjs, Threejs, CSS
+              <br />
+              <br />
+
+              <span style={{ fontWeight: 'bolder', }}>Backend Skills [lvl: advanced]</span>
+              <br />
+              Node, GraphQL, Express, Firebase, Mongodb, SQL, Docker
+              <br />
+
+              <span style={{ fontWeight: 'bolder', }}>DataOps/ML Skills [lvl: noob]</span>
+              <br />
+              NumPy, Pandas, Tensorflow
+              <br />
+              <br />
+
+              <span style={{ fontWeight: 'bolder', }}>Languages</span>
+              <br />
+              JavaScript, Python, Git
+              <br />
+              English (fluent), Spanish (working proficiency), Arabic (barely but learning nonetheless)
+              <br />
+              <br />
+
+              <span style={{ fontWeight: 'bolder', }}>Soft Skills</span>
+              <br />
+              Team leadership, project management, and sales
+              <br />
+              <br />
             </p>
-            <a href='#projects' style={{fontSize: 'large'}}>Next</a>
+            <a href='#projects' style={{ fontSize: 'large' }}>Next</a>
           </section>
 
           <section id='projects'>
@@ -264,15 +364,24 @@ export default function ComputerInception3D() {
             <p>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
             </p>
-            <a href='#contact' style={{fontSize: 'large'}}>Next</a>
+            <a href='#contact' style={{ fontSize: 'large' }}>Next</a>
           </section>
 
           <section id='contact'>
             <h2>Contact</h2>
+            <h1><a id='copy-link'>jackyoukstetter1@gmail.com</a></h1>
+            {isCopied ? (<p>Copied!</p>) : <></>}
+            <h2><a target='_blank' href='tel:15105080618'>(510) 508 - 0618</a></h2>
+            <h4><a target='_blank' href='https://www.linkedin.com/in/jack-youkstetter-6b00a81a8/'>LinkedIn: @Jack Youkstetter</a></h4>
+            <a href='#credits' style={{ fontSize: 'large' }}>Next</a>
+          </section>
+
+          <section id='credits'>
+            <h2>Credits</h2>
             <p>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
             </p>
-            <a href='#top' style={{fontSize: 'large'}}>Top</a>
+            <a href='#top' style={{ fontSize: 'large' }}>Top</a>
           </section>
 
 
