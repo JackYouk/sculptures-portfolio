@@ -47,9 +47,9 @@ export default function ComputerInception3D() {
 
     const loader = new GLTFLoader();
 
-    // FIRST SCULPTURE -----------------------------------------------------------
+    // OPENING SCULPTURE -----------------------------------------------------------
     loader.load('./assets/Charisma_Body.gltf', (gltf) => {
-      const spotLight = new THREE.SpotLight(0xffffff, 2);
+      const spotLight = new THREE.SpotLight(0x54A4DB, 0.1);
       spotLight.castShadow = true;
       spotLight.position.y = 70;
       spotLight.position.x = 10;
@@ -57,7 +57,119 @@ export default function ComputerInception3D() {
 
       gltf.scene.scale.set(5, 5, 5);
       gltf.scene.position.setZ(-35)
-      gltf.scene.position.setY(-30)
+      gltf.scene.position.setY(-22)
+      gltf.scene.position.setX(40)
+      gltf.scene.rotateX(30)
+      // gltf.scene.rotateY(110)
+
+      scene.add(gltf.scene);
+
+      const animate = () => {
+        // updates
+        // controls.update();
+        gltf.scene.rotation.z += 0.01;
+
+        renderer.render(scene, camera);
+        window.requestAnimationFrame(animate);
+      }
+      animate();
+    });
+
+    // ABOUT ME SCULPTURE -----------------------------------------------------------
+    loader.load('./assets/Charisma_Body.gltf', (gltf) => {
+      const spotLight = new THREE.SpotLight(0x54A4DB, 0.5);
+      spotLight.castShadow = true;
+      spotLight.position.y = 208;
+      spotLight.position.x = 10;
+      scene.add(spotLight);
+
+      gltf.scene.scale.set(5, 5, 5);
+      gltf.scene.position.setZ(-35)
+      gltf.scene.position.setY(116)
+      gltf.scene.position.setX(40)
+      gltf.scene.rotateX(30)
+      // gltf.scene.rotateY(110)
+
+      scene.add(gltf.scene);
+
+      const animate = () => {
+        // updates
+        // controls.update();
+        gltf.scene.rotation.z += 0.01;
+
+        renderer.render(scene, camera);
+        window.requestAnimationFrame(animate);
+      }
+      animate();
+    });
+
+    // SKILLS SCULPTURE -----------------------------------------------------------
+    loader.load('./assets/Charisma_Body.gltf', (gltf) => {
+      const spotLight = new THREE.SpotLight(0x54A4DB, 1);
+      spotLight.castShadow = true;
+      spotLight.position.y = 346;
+      spotLight.position.x = 10;
+      scene.add(spotLight);
+
+      gltf.scene.scale.set(5, 5, 5);
+      gltf.scene.position.setZ(-35)
+      gltf.scene.position.setY(254)
+      gltf.scene.position.setX(40)
+      gltf.scene.rotateX(30)
+      // gltf.scene.rotateY(110)
+
+      scene.add(gltf.scene);
+
+      const animate = () => {
+        // updates
+        // controls.update();
+        gltf.scene.rotation.z += 0.01;
+
+        renderer.render(scene, camera);
+        window.requestAnimationFrame(animate);
+      }
+      animate();
+    });
+
+    // PROJECTS SCULPTURE -----------------------------------------------------------
+    loader.load('./assets/Charisma_Body.gltf', (gltf) => {
+      const spotLight = new THREE.SpotLight(0x54A4DB, 1.5);
+      spotLight.castShadow = true;
+      spotLight.position.y = 484;
+      spotLight.position.x = 10;
+      scene.add(spotLight);
+
+      gltf.scene.scale.set(5, 5, 5);
+      gltf.scene.position.setZ(-35)
+      gltf.scene.position.setY(392)
+      gltf.scene.position.setX(40)
+      gltf.scene.rotateX(30)
+      // gltf.scene.rotateY(110)
+
+      scene.add(gltf.scene);
+
+      const animate = () => {
+        // updates
+        // controls.update();
+        gltf.scene.rotation.z += 0.01;
+
+        renderer.render(scene, camera);
+        window.requestAnimationFrame(animate);
+      }
+      animate();
+    });
+
+    // CONTACT SCULPTURE -----------------------------------------------------------
+    loader.load('./assets/Charisma_Body.gltf', (gltf) => {
+      const spotLight = new THREE.SpotLight(0x54A4DB, 2);
+      spotLight.castShadow = true;
+      spotLight.position.y = 622;
+      spotLight.position.x = 10;
+      scene.add(spotLight);
+
+      gltf.scene.scale.set(5, 5, 5);
+      gltf.scene.position.setZ(-35)
+      gltf.scene.position.setY(530)
       gltf.scene.position.setX(40)
       gltf.scene.rotateX(30)
       // gltf.scene.rotateY(110)
@@ -87,32 +199,31 @@ export default function ComputerInception3D() {
     function moveCamera() {
       const t = document.body.getBoundingClientRect().top;
 
-      camera.position.y = t * -0.01;
+      camera.position.y = t * -0.17;
     }
     document.body.onscroll = moveCamera;
     moveCamera();
 
+    // SCROLL TO TARGET DIV
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+          e.preventDefault();
+  
+          var target = document.querySelector(this.getAttribute('href'));
+          var targetPosition = target.getBoundingClientRect().top;
+          var targetHeight = target.offsetHeight;
+          var windowHeight = window.innerHeight;
+          var offset = (targetPosition - (windowHeight / 2)) + (targetHeight / 2);
+  
+          window.scrollBy({
+              top: offset,
+              left: 0,
+              behavior: 'smooth'
+          });
+      });
+  });
 
   }, []);
-
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-
-        var target = document.querySelector(this.getAttribute('href'));
-        var targetPosition = target.getBoundingClientRect().top;
-        var targetHeight = target.offsetHeight;
-        var windowHeight = window.innerHeight;
-        var offset = (targetPosition - (windowHeight / 2)) + (targetHeight / 2);
-
-        window.scrollBy({
-            top: offset,
-            left: 0,
-            behavior: 'smooth'
-        });
-    });
-});
-
 
   return (
     <>
@@ -120,9 +231,9 @@ export default function ComputerInception3D() {
         <canvas id='canvas' />
         <main>
 
-          <header>
+          <header id='top'>
             <h1>Jack Youkstetter</h1>
-            <p>Web Developer</p>
+            {/* <h3>Web Developer</h3> */}
             <div className='tableOfContents'>
               <a href='#about'>About Me</a>
               <a href='#skills'>Skills</a>
@@ -137,6 +248,7 @@ export default function ComputerInception3D() {
             <p>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
             </p>
+            <a href='#skills' style={{fontSize: 'large'}}>Next</a>
           </section>
 
           <section id='skills'>
@@ -144,6 +256,7 @@ export default function ComputerInception3D() {
             <p>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
             </p>
+            <a href='#projects' style={{fontSize: 'large'}}>Next</a>
           </section>
 
           <section id='projects'>
@@ -151,6 +264,7 @@ export default function ComputerInception3D() {
             <p>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
             </p>
+            <a href='#contact' style={{fontSize: 'large'}}>Next</a>
           </section>
 
           <section id='contact'>
@@ -158,6 +272,7 @@ export default function ComputerInception3D() {
             <p>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
             </p>
+            <a href='#top' style={{fontSize: 'large'}}>Top</a>
           </section>
 
 
