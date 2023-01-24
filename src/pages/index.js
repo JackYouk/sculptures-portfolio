@@ -1,14 +1,17 @@
+import Head from 'next/head';
 import { useState, useEffect } from 'react'
 import * as THREE from 'three'
+import React from 'react';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 
 
-export default function ComputerInception3D() {
+export default function Portfolio() {
   useEffect(() => {
     // SCENE -----------------------------------------------------------
     const scene = new THREE.Scene();
-    scene.background = new THREE.Color(0xffffff);
+    scene.background = new THREE.Color(0x000000);
+
 
     // CAMERA -----------------------------------------------------------
     const camera = new THREE.PerspectiveCamera(
@@ -19,7 +22,7 @@ export default function ComputerInception3D() {
     );
     camera.position.z = 80;
     camera.position.y = 5;
-
+    console.log(window.innerHeight, window.innerWidth)
 
     const canvas = document.getElementById('canvas');
     const renderer = new THREE.WebGLRenderer({
@@ -46,19 +49,23 @@ export default function ComputerInception3D() {
     // const controls = new OrbitControls(camera, renderer.domElement);
 
     const loader = new GLTFLoader();
+    const yStart = -20;
 
     // OPENING SCULPTURE -----------------------------------------------------------
     loader.load('./assets/Charisma_Body.gltf', (gltf) => {
       const spotLight = new THREE.SpotLight(0x54A4DB, 0.1);
       spotLight.castShadow = true;
-      spotLight.position.y = 70;
+      spotLight.position.y = yStart + 20;
       spotLight.position.x = 10;
       scene.add(spotLight);
 
       gltf.scene.scale.set(5, 5, 5);
       gltf.scene.position.setZ(-35)
-      gltf.scene.position.setY(-22)
+      gltf.scene.position.setY(yStart)
       gltf.scene.position.setX(40)
+      if (window.innerWidth < 1270) {
+        gltf.scene.position.setX(0)
+      }
       gltf.scene.rotateX(30)
       // gltf.scene.rotateY(110)
 
@@ -79,14 +86,17 @@ export default function ComputerInception3D() {
     loader.load('./assets/Intelligence_Head.gltf', (gltf) => {
       const spotLight = new THREE.SpotLight(0x54A4DB, 0.5);
       spotLight.castShadow = true;
-      spotLight.position.y = 208;
+      spotLight.position.y = yStart + 130;
       spotLight.position.x = 10;
       scene.add(spotLight);
 
       gltf.scene.scale.set(5, 5, 5);
       gltf.scene.position.setZ(-35)
-      gltf.scene.position.setY(50)
+      gltf.scene.position.setY(yStart + 110)
       gltf.scene.position.setX(40)
+      if (window.innerWidth < 1270) {
+        gltf.scene.position.setX(0)
+      }
       gltf.scene.rotateX(30)
       // gltf.scene.rotateY(110)
 
@@ -107,14 +117,17 @@ export default function ComputerInception3D() {
     loader.load('./assets/Repair_Body.gltf', (gltf) => {
       const spotLight = new THREE.SpotLight(0x54A4DB, 1);
       spotLight.castShadow = true;
-      spotLight.position.y = 346;
+      spotLight.position.y = yStart + 350;
       spotLight.position.x = 10;
       scene.add(spotLight);
 
       gltf.scene.scale.set(5, 5, 5);
       gltf.scene.position.setZ(-35)
-      gltf.scene.position.setY(244)
+      gltf.scene.position.setY(yStart + 330)
       gltf.scene.position.setX(40)
+      if (window.innerWidth < 1270) {
+        gltf.scene.position.setX(0)
+      }
       gltf.scene.rotateX(30)
       // gltf.scene.rotateY(110)
 
@@ -135,14 +148,17 @@ export default function ComputerInception3D() {
     loader.load('./assets/Science_Body.gltf', (gltf) => {
       const spotLight = new THREE.SpotLight(0x54A4DB, 1.5);
       spotLight.castShadow = true;
-      spotLight.position.y = 484;
+      spotLight.position.y = yStart + 520;
       spotLight.position.x = 10;
       scene.add(spotLight);
 
       gltf.scene.scale.set(5, 5, 5);
       gltf.scene.position.setZ(-35)
-      gltf.scene.position.setY(402)
+      gltf.scene.position.setY(yStart + 500)
       gltf.scene.position.setX(40)
+      if (window.innerWidth < 1270) {
+        gltf.scene.position.setX(0)
+      }
       gltf.scene.rotateX(30)
       // gltf.scene.rotateY(110)
 
@@ -163,14 +179,17 @@ export default function ComputerInception3D() {
     loader.load('./assets/Speech_Body.gltf', (gltf) => {
       const spotLight = new THREE.SpotLight(0x54A4DB, 2);
       spotLight.castShadow = true;
-      spotLight.position.y = 622;
+      spotLight.position.y = yStart + 770;
       spotLight.position.x = 10;
       scene.add(spotLight);
 
       gltf.scene.scale.set(5, 5, 5);
       gltf.scene.position.setZ(-35)
-      gltf.scene.position.setY(550)
+      gltf.scene.position.setY(yStart + 650)
       gltf.scene.position.setX(40)
+      if (window.innerWidth < 1270) {
+        gltf.scene.position.setX(0)
+      }
       gltf.scene.rotateX(30)
       // gltf.scene.rotateY(110)
 
@@ -189,11 +208,19 @@ export default function ComputerInception3D() {
 
     // CREDITS SCULPTURE -----------------------------------------------------------
     loader.load('./assets/Weapons.gltf', (gltf) => {
+      const spotLight = new THREE.SpotLight(0x54A4DB, 2);
+      spotLight.castShadow = true;
+      spotLight.position.y = yStart + 10;
+      spotLight.position.x = 10;
+      scene.add(spotLight);
 
       gltf.scene.scale.set(1.5, 1.5, 1.5);
       gltf.scene.position.setZ(-35)
-      gltf.scene.position.setY(715)
+      gltf.scene.position.setY(yStart + 800)
       gltf.scene.position.setX(40)
+      if (window.innerWidth < 1270) {
+        gltf.scene.position.setX(0)
+      }
       gltf.scene.rotateX(30)
       // gltf.scene.rotateY(110)
 
@@ -271,18 +298,25 @@ export default function ComputerInception3D() {
       );
     });
 
+
+
   }, []);
 
   const [isCopied, setIsCopied] = useState(false);
 
   return (
     <>
+      <Head>
+        <title>JackYouk Portfolio</title>
+        <meta name="description" content="Jack Youkstetter's Portfolio Page" />
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+      </Head>
       <div id='canvasContainer'>
         <canvas id='canvas' />
         <main>
 
           <header id='top'>
-            <h1>Jack Youkstetter</h1>
+            <h1>Jack <br/> Youkstetter</h1>
             {/* <h3>Web Developer</h3> */}
             <div className='tableOfContents'>
               <a href='#about'>About Me</a>
@@ -296,13 +330,13 @@ export default function ComputerInception3D() {
           <section id='about'>
             <h2>About</h2>
             <p>
-              Hey there!
+              {/* Hey there!
               Bienviendos!
               Kafa halek?
               <br />
-              <br />
+              <br /> */}
               To ever-so-humbly introduce myself,
-              I am a creative and a "Jack of all Trades" software engineer,
+              I am a creative genius and a "Jack of all Trades" developer,
               with both jaw-dropping and mesmerizing web development
               abilities.
               <br />
@@ -325,15 +359,16 @@ export default function ComputerInception3D() {
           <section id='skills'>
             <h2>Skills</h2>
             <p>
-              <span style={{ fontWeight: 'bolder', }}>Frontend Skills [lvl: expert]</span>
+              <span style={{ fontWeight: 'bolder', }}>Frontend Skills [lvl: 555]</span>
               <br />
               React, Nextjs, Threejs, CSS
               <br />
               <br />
 
-              <span style={{ fontWeight: 'bolder', }}>Backend Skills [lvl: advanced]</span>
+              <span style={{ fontWeight: 'bolder', }}>Backend Skills [lvl: 487]</span>
               <br />
-              Node, GraphQL, Express, Firebase, Mongodb, SQL, Docker
+              Node, Apollo GraphQL, Express, Firebase, Mongodb, SQL, Docker
+              <br />
               <br />
 
               <span style={{ fontWeight: 'bolder', }}>DataOps/ML Skills [lvl: noob]</span>
@@ -361,24 +396,26 @@ export default function ComputerInception3D() {
 
           <section id='projects'>
             <h2>Projects</h2>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </p>
+            <div className='card' style={{  backgroundImage: `url(${''})`, backgroundSize: 'cover'}}>
+
+            </div>
             <a href='#contact' style={{ fontSize: 'large' }}>Next</a>
           </section>
 
           <section id='contact'>
             <h2>Contact</h2>
-            <h1><a id='copy-link'>jackyoukstetter1@gmail.com</a></h1>
+            <h1><a id='copy-link'>jackyoukstetter1<br/>@gmail.com</a></h1>
             {isCopied ? (<p>Copied!</p>) : <></>}
             <h2><a target='_blank' href='tel:15105080618'>(510) 508 - 0618</a></h2>
             <h4><a target='_blank' href='https://www.linkedin.com/in/jack-youkstetter-6b00a81a8/'>LinkedIn: @Jack Youkstetter</a></h4>
+            <h4><a target='_blank' href='https://github.com/JackYouk'>Github: @JackYouk</a></h4>
             <a href='#credits' style={{ fontSize: 'large' }}>Next</a>
           </section>
 
           <section id='credits'>
-            <h2>Credits</h2>
             <p>
+              &copy; JackJackLabs 2023 <br/><br/>
+              Website built with &#10084;&#65039; by JackJack using Threejs and Nextjs. <br/><br/>
               Shout out to @Fragmaster on Thingiverse and Fallout 4 bobblehead design team for the 3d models used in this project.
             </p>
             <a href='#top' style={{ fontSize: 'large' }}>Top</a>
