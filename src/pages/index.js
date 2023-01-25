@@ -4,6 +4,7 @@ import * as THREE from 'three'
 import React from 'react';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
+import { Grid } from '@mui/material';
 
 
 export default function Portfolio() {
@@ -316,7 +317,7 @@ export default function Portfolio() {
         <main>
 
           <header id='top'>
-            <h1>Jack <br/> Youkstetter</h1>
+            <h1>Jack <br /> Youkstetter</h1>
             {/* <h3>Web Developer</h3> */}
             <div className='tableOfContents'>
               <a href='#about'>About Me</a>
@@ -335,23 +336,16 @@ export default function Portfolio() {
               Kafa halek?
               <br />
               <br /> */}
-              To ever-so-humbly introduce myself,
-              I am a creative genius and a "Jack of all Trades" developer,
-              with both jaw-dropping and mesmerizing web development
-              abilities.
+              I'm a freelance web developer & creative from Oakland, California. Ive been codin' since the sandbox,
+              starting with building an html+css site for my car drawings when I was eight years old. If you find the link for
+              Jack's Car Drawings let me know, Ive been searching. It's like a lost puppy.
               <br />
               <br />
-              Need a stunning 3D landing page?
-              I Gotchu.
+              Or maybe I'm the lost puppy.
               <br />
-              Backend architecture needs some fixin' up?
-              I Gotchu.
               <br />
-              Consulting?
-              I Gotchu.
-              <br />
-              Want me on your team?
-              I maybe gotchu it depends.
+              Anyways, Ive been designing beautiful websites for quite some time.
+              Feel free to reach out, I'm a free agent.
             </p>
             <a href='#skills' style={{ fontSize: 'large' }}>Next</a>
           </section>
@@ -395,16 +389,38 @@ export default function Portfolio() {
           </section>
 
           <section id='projects'>
-            <h2>Projects</h2>
-            <div className='card' style={{  backgroundImage: `url(${''})`, backgroundSize: 'cover'}}>
+            <h2>Featured Projects</h2>
+            <Grid container spacing={2} display='flex' justifyContent='center' >
+              <Grid item xs={12} md={6} >
+                <a target='_blank' href='https://remota-website.vercel.app/'>
+                  <div className='card' style={{ backgroundImage: `url(${'/assets/remotawebsite.png'})`, backgroundSize: 'cover' }}>
+                  </div>
+                  {/* <div className='card text'></div> */}
+                </a>
+              </Grid>
+              <Grid item xs={12} md={6}>
+                <a target='_blank' href='https://sculptures-portfolio.vercel.app/'>
+                  <div className='card' style={{ backgroundImage: `url(${'/assets/portfoliowebsite.png'})`, backgroundSize: 'cover' }}>
+                  </div>
+                  {/* <div className='card text'></div> */}
+                </a>
+              </Grid>
+              <Grid item xs={12} md={6}>
+                <a target='_blank' href='https://advanced-fe-playground.vercel.app/'>
+                  <div className='card' style={{ backgroundImage: `url(${'/assets/playgroundwebsite.png'})`, backgroundSize: 'cover' }}>
+                  </div>
+                  {/* <div className='card text'></div> */}
+                </a>
+              </Grid>
+            </Grid>
 
-            </div>
+
             <a href='#contact' style={{ fontSize: 'large' }}>Next</a>
           </section>
 
           <section id='contact'>
             <h2>Contact</h2>
-            <h1><a id='copy-link'>jackyoukstetter1<br/>@gmail.com</a></h1>
+            <h1><a id='copy-link'>jackyoukstetter1<br />@gmail.com</a></h1>
             {isCopied ? (<p>Copied!</p>) : <></>}
             <h2><a target='_blank' href='tel:15105080618'>(510) 508 - 0618</a></h2>
             <h4><a target='_blank' href='https://www.linkedin.com/in/jack-youkstetter-6b00a81a8/'>LinkedIn: @Jack Youkstetter</a></h4>
@@ -414,8 +430,8 @@ export default function Portfolio() {
 
           <section id='credits'>
             <p>
-              &copy; JackJackLabs 2023 <br/><br/>
-              Website built with &#10084;&#65039; by JackJack using Threejs and Nextjs. <br/><br/>
+              &copy; JackJackLabs 2023 <br /><br />
+              Website built with &#10084;&#65039; by JackJack using Threejs and Nextjs. <br /><br />
               Shout out to @Fragmaster on Thingiverse and Fallout 4 bobblehead design team for the 3d models used in this project.
             </p>
             <a href='#top' style={{ fontSize: 'large' }}>Top</a>
